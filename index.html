@@ -1,0 +1,2895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>EcoLens | AI Waste Assistant</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                #f3f8f4;
+
+            color:
+                #183b27;
+
+            line-height:
+                1.6;
+        }
+
+
+        /* HEADER */
+
+        header {
+
+            background:
+                white;
+
+            border-bottom:
+                1px solid #dce9df;
+
+            padding:
+                18px 7%;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            position:
+                sticky;
+
+            top:
+                0;
+
+            z-index:
+                100;
+        }
+
+
+        .logo {
+
+            font-size:
+                25px;
+
+            font-weight:
+                bold;
+
+            color:
+                #168447;
+        }
+
+
+        .badge {
+
+            background:
+                #e5f7eb;
+
+            color:
+                #168447;
+
+            padding:
+                8px 15px;
+
+            border-radius:
+                30px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                bold;
+        }
+
+
+        /* HERO */
+
+        .hero {
+
+            text-align:
+                center;
+
+            padding:
+                70px 20px 50px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #e8f7ec,
+                    #f3f8f4
+                );
+        }
+
+
+        .hero-badge {
+
+            display:
+                inline-block;
+
+            background:
+                white;
+
+            color:
+                #168447;
+
+            border:
+                1px solid #cde5d3;
+
+            padding:
+                8px 15px;
+
+            border-radius:
+                30px;
+
+            margin-bottom:
+                18px;
+
+            font-size:
+                14px;
+
+            font-weight:
+                bold;
+        }
+
+
+        .hero h1 {
+
+            font-size:
+                50px;
+
+            line-height:
+                1.15;
+
+            margin-bottom:
+                18px;
+        }
+
+
+        .hero h1 span {
+
+            color:
+                #168447;
+        }
+
+
+        .hero p {
+
+            max-width:
+                720px;
+
+            margin:
+                auto;
+
+            color:
+                #5d7164;
+
+            font-size:
+                18px;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+
+            width:
+                90%;
+
+            max-width:
+                1100px;
+
+            margin:
+                35px auto 70px;
+        }
+
+
+        /* CARDS */
+
+        .card {
+
+            background:
+                white;
+
+            border-radius:
+                20px;
+
+            padding:
+                28px;
+
+            margin-bottom:
+                25px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(
+                    26,
+                    77,
+                    43,
+                    0.08
+                );
+
+            border:
+                1px solid #e1eee4;
+        }
+
+
+        .card h2 {
+
+            margin-bottom:
+                7px;
+        }
+
+
+        .subtitle {
+
+            color:
+                #718078;
+
+            margin-bottom:
+                22px;
+        }
+
+
+        /* UPLOAD */
+
+        .upload-area {
+
+            border:
+                2px dashed #8bc7a1;
+
+            border-radius:
+                18px;
+
+            padding:
+                42px 20px;
+
+            text-align:
+                center;
+
+            background:
+                #f8fcf9;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.3s;
+        }
+
+
+        .upload-area:hover {
+
+            background:
+                #eef9f1;
+
+            border-color:
+                #168447;
+        }
+
+
+        .upload-icon {
+
+            font-size:
+                55px;
+
+            margin-bottom:
+                10px;
+        }
+
+
+        .upload-area h3 {
+
+            margin-bottom:
+                5px;
+        }
+
+
+        .upload-area p {
+
+            color:
+                #75847b;
+        }
+
+
+        #imageInput {
+
+            display:
+                none;
+        }
+
+
+        #preview {
+
+            display:
+                none;
+
+            max-width:
+                100%;
+
+            max-height:
+                350px;
+
+            margin:
+                20px auto;
+
+            border-radius:
+                15px;
+
+            object-fit:
+                contain;
+        }
+
+
+        /* BUTTONS */
+
+        .button-row {
+
+            display:
+                flex;
+
+            gap:
+                12px;
+
+            margin-top:
+                20px;
+
+            flex-wrap:
+                wrap;
+        }
+
+
+        button {
+
+            border:
+                none;
+
+            border-radius:
+                12px;
+
+            padding:
+                13px 22px;
+
+            font-size:
+                15px;
+
+            font-weight:
+                bold;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.2s;
+        }
+
+
+        .primary {
+
+            background:
+                #168447;
+
+            color:
+                white;
+
+            flex:
+                1;
+        }
+
+
+        .primary:hover {
+
+            background:
+                #116b38;
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .primary:disabled {
+
+            background:
+                #aac9b4;
+
+            cursor:
+                not-allowed;
+
+            transform:
+                none;
+        }
+
+
+        .secondary {
+
+            background:
+                #edf4ef;
+
+            color:
+                #28623e;
+        }
+
+
+        .secondary:hover {
+
+            background:
+                #dfece2;
+        }
+
+
+        /* LOADING */
+
+        .loading {
+
+            display:
+                none;
+
+            text-align:
+                center;
+
+            padding:
+                25px;
+
+            color:
+                #168447;
+
+            font-weight:
+                bold;
+        }
+
+
+        .loading span {
+
+            display:
+                inline-block;
+
+            animation:
+                spin 1s linear infinite;
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform:
+                    rotate(360deg);
+            }
+
+        }
+
+
+        /* RESULTS */
+
+        #results {
+
+            display:
+                none;
+        }
+
+
+        .result-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    1fr
+                );
+
+            gap:
+                16px;
+
+            margin-top:
+                20px;
+        }
+
+
+        .result-box {
+
+            background:
+                #f7fbf8;
+
+            border-radius:
+                15px;
+
+            padding:
+                18px;
+
+            border:
+                1px solid #e1eee4;
+        }
+
+
+        .result-box strong {
+
+            display:
+                block;
+
+            color:
+                #6c7c72;
+
+            font-size:
+                12px;
+
+            margin-bottom:
+                5px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.5px;
+        }
+
+
+        .result-box p {
+
+            font-size:
+                17px;
+
+            font-weight:
+                bold;
+        }
+
+
+        .full-box {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        /* CONFIDENCE */
+
+        .confidence {
+
+            display:
+                inline-block;
+
+            padding:
+                5px 11px;
+
+            border-radius:
+                20px;
+
+            background:
+                #e8f6ec;
+
+            color:
+                #168447;
+
+            font-size:
+                13px;
+
+            font-weight:
+                bold;
+        }
+
+
+        /* INDIA GUIDE */
+
+        .india-guide {
+
+            background:
+                #edf8f0;
+
+            border-left:
+                5px solid #168447;
+
+            padding:
+                18px;
+
+            border-radius:
+                12px;
+
+            margin-top:
+                20px;
+        }
+
+
+        .india-guide strong {
+
+            display:
+                block;
+
+            margin-bottom:
+                6px;
+        }
+
+
+        /* SCORE */
+
+        .score-section {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                30px;
+
+            margin-top:
+                25px;
+
+            flex-wrap:
+                wrap;
+        }
+
+
+        .score-circle {
+
+            width:
+                145px;
+
+            height:
+                145px;
+
+            border-radius:
+                50%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                conic-gradient(
+                    #168447 0deg,
+                    #e4eee6 0deg
+                );
+        }
+
+
+        .score-inner {
+
+            width:
+                110px;
+
+            height:
+                110px;
+
+            background:
+                white;
+
+            border-radius:
+                50%;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+        }
+
+
+        .score-number {
+
+            font-size:
+                32px;
+
+            font-weight:
+                bold;
+
+            color:
+                #168447;
+        }
+
+
+        .score-label {
+
+            color:
+                #6e7d74;
+
+            font-size:
+                13px;
+        }
+
+
+        /* TIP */
+
+        .tip {
+
+            background:
+                #fff9e8;
+
+            border-left:
+                5px solid #e6b83f;
+
+            padding:
+                18px;
+
+            border-radius:
+                12px;
+
+            margin-top:
+                20px;
+        }
+
+
+        .tip strong {
+
+            display:
+                block;
+
+            margin-bottom:
+                6px;
+        }
+
+
+        /* DASHBOARD */
+
+        .dashboard-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    1fr
+                );
+
+            gap:
+                15px;
+        }
+
+
+        .stat {
+
+            background:
+                #f7fbf8;
+
+            padding:
+                20px;
+
+            border-radius:
+                15px;
+
+            text-align:
+                center;
+
+            border:
+                1px solid #e1eee4;
+        }
+
+
+        .stat-number {
+
+            font-size:
+                30px;
+
+            font-weight:
+                bold;
+
+            color:
+                #168447;
+        }
+
+
+        .stat-label {
+
+            color:
+                #718078;
+
+            font-size:
+                14px;
+        }
+
+
+        /* LEVEL */
+
+        .level-box {
+
+            margin-top:
+                20px;
+
+            background:
+                #edf8f0;
+
+            padding:
+                20px;
+
+            border-radius:
+                15px;
+        }
+
+
+        .progress {
+
+            height:
+                12px;
+
+            background:
+                #dbe8de;
+
+            border-radius:
+                20px;
+
+            overflow:
+                hidden;
+
+            margin-top:
+                10px;
+        }
+
+
+        .progress-bar {
+
+            height:
+                100%;
+
+            width:
+                0%;
+
+            background:
+                #168447;
+
+            transition:
+                0.5s;
+        }
+
+
+        /* HISTORY */
+
+        .history-header {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+        }
+
+
+        .history-item {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            align-items:
+                center;
+
+            padding:
+                15px 0;
+
+            border-bottom:
+                1px solid #e5ece7;
+        }
+
+
+        .history-item:last-child {
+
+            border-bottom:
+                none;
+        }
+
+
+        .history-name {
+
+            font-weight:
+                bold;
+        }
+
+
+        .history-date {
+
+            font-size:
+                12px;
+
+            color:
+                #7b887f;
+        }
+
+
+        .score-small {
+
+            background:
+                #e8f6ec;
+
+            color:
+                #168447;
+
+            padding:
+                6px 10px;
+
+            border-radius:
+                20px;
+
+            font-weight:
+                bold;
+
+            font-size:
+                13px;
+        }
+
+
+        .empty-history {
+
+            color:
+                #7a877e;
+
+            text-align:
+                center;
+
+            padding:
+                20px;
+        }
+
+
+        /* HOW IT WORKS */
+
+        .steps {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
+            gap:
+                18px;
+
+            margin-top:
+                20px;
+        }
+
+
+        .step {
+
+            background:
+                #f7fbf8;
+
+            padding:
+                22px;
+
+            border-radius:
+                15px;
+
+            border:
+                1px solid #e1eee4;
+        }
+
+
+        .step-number {
+
+            width:
+                40px;
+
+            height:
+                40px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                50%;
+
+            background:
+                #dff2e4;
+
+            color:
+                #168447;
+
+            font-weight:
+                bold;
+
+            margin-bottom:
+                12px;
+        }
+
+
+        .step h3 {
+
+            margin-bottom:
+                6px;
+        }
+
+
+        .step p {
+
+            color:
+                #718078;
+
+            font-size:
+                14px;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+
+            text-align:
+                center;
+
+            padding:
+                30px;
+
+            background:
+                #183b27;
+
+            color:
+                #d8e8dc;
+        }
+
+
+        footer strong {
+
+            color:
+                white;
+        }
+
+
+        /* MOBILE */
+
+        @media (
+            max-width: 800px
+        ) {
+
+            .hero h1 {
+
+                font-size:
+                    36px;
+            }
+
+
+            .result-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .dashboard-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+            }
+
+
+            .steps {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media (
+            max-width: 500px
+        ) {
+
+            header {
+
+                padding:
+                    15px 5%;
+            }
+
+
+            .badge {
+
+                display:
+                    none;
+            }
+
+
+            .container {
+
+                width:
+                    94%;
+            }
+
+
+            .card {
+
+                padding:
+                    20px;
+            }
+
+
+            .dashboard-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .hero {
+
+                padding-top:
+                    45px;
+            }
+
+
+            .history-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        🌱 EcoLens
+    </div>
+
+    <div class="badge">
+        🌍 Earth Forward
+    </div>
+
+</header>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-badge">
+        🤖 AI-Powered Waste Assistant
+    </div>
+
+    <h1>
+        Know Your Waste.<br>
+        <span>Protect Our Planet.</span>
+    </h1>
+
+    <p>
+
+        Upload a photo of a waste item and let AI identify it,
+        explain how to dispose of it, and help you make a
+        more responsible environmental choice.
+
+    </p>
+
+</section>
+
+
+
+<div class="container">
+
+
+    <!-- UPLOAD -->
+
+    <div class="card">
+
+        <h2>
+            📸 Analyze Your Waste
+        </h2>
+
+        <p class="subtitle">
+            Take a photo or choose an image of a waste item.
+        </p>
+
+
+        <label
+            class="upload-area"
+            for="imageInput"
+        >
+
+            <div class="upload-icon">
+                ♻️
+            </div>
+
+            <h3>
+                Upload Waste Image
+            </h3>
+
+            <p>
+                Click here to select an image
+            </p>
+
+        </label>
+
+
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+        >
+
+
+        <img
+            id="preview"
+            alt="Waste preview"
+        >
+
+
+        <div class="button-row">
+
+            <button
+                class="primary"
+                id="analyzeBtn"
+                disabled
+            >
+                🤖 Analyze with AI
+            </button>
+
+
+            <button
+                class="secondary"
+                id="clearBtn"
+            >
+                Clear
+            </button>
+
+        </div>
+
+
+        <div
+            class="loading"
+            id="loading"
+        >
+
+            <span>
+                ⏳
+            </span>
+
+            AI is analyzing your image...
+
+        </div>
+
+    </div>
+
+
+
+    <!-- RESULTS -->
+
+    <div
+        class="card"
+        id="results"
+    >
+
+        <h2>
+            🔍 AI Analysis
+        </h2>
+
+        <p class="subtitle">
+            Here's what EcoLens found.
+        </p>
+
+
+        <div class="result-grid">
+
+
+            <div class="result-box">
+
+                <strong>
+                    Waste Item
+                </strong>
+
+                <p id="wasteItem">
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <strong>
+                    Category
+                </strong>
+
+                <p id="category">
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <strong>
+                    AI Confidence
+                </strong>
+
+                <p id="confidence">
+
+                    <span class="confidence">
+                        -
+                    </span>
+
+                </p>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <strong>
+                    Recyclable
+                </strong>
+
+                <p id="recyclable">
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="result-box full-box">
+
+                <strong>
+                    Disposal Advice
+                </strong>
+
+                <p id="disposal">
+                    -
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- INDIA GUIDE -->
+
+        <div class="india-guide">
+
+            <strong>
+                🇮🇳 India Disposal Guide
+            </strong>
+
+            <p id="indiaGuide">
+                Disposal guidance will appear here.
+            </p>
+
+        </div>
+
+
+
+        <!-- SCORE -->
+
+        <div class="score-section">
+
+
+            <div
+                class="score-circle"
+                id="scoreCircle"
+            >
+
+                <div class="score-inner">
+
+                    <div
+                        class="score-number"
+                        id="scoreNumber"
+                    >
+                        0
+                    </div>
+
+                    <div class="score-label">
+                        Eco Score
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <h3 id="scoreTitle">
+                    Eco Score
+                </h3>
+
+                <p id="scoreDescription">
+                    Your responsible-disposal score.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TIP -->
+
+        <div class="tip">
+
+            <strong>
+                💡 Environmental Tip
+            </strong>
+
+            <p id="environmentTip">
+                Small responsible choices can make
+                a big difference.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- HOW IT WORKS -->
+
+    <div class="card">
+
+        <h2>
+            ⚡ How EcoLens Works
+        </h2>
+
+        <p class="subtitle">
+            Three simple steps to make better waste decisions.
+        </p>
+
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <h3>
+                    📸 Upload
+                </h3>
+
+                <p>
+                    Take a photo or upload an image
+                    of the waste item.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <h3>
+                    🤖 AI Identifies
+                </h3>
+
+                <p>
+                    EcoLens uses AI vision to identify
+                    the waste and its category.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <h3>
+                    ♻️ Act Responsibly
+                </h3>
+
+                <p>
+                    Get disposal advice and make
+                    a more responsible choice.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DASHBOARD -->
+
+    <div class="card">
+
+        <h2>
+            📊 Eco Dashboard
+        </h2>
+
+        <p class="subtitle">
+            Track your waste analysis journey.
+        </p>
+
+
+        <div class="dashboard-grid">
+
+
+            <div class="stat">
+
+                <div
+                    class="stat-number"
+                    id="totalItems"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Total Items
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div
+                    class="stat-number"
+                    id="recyclableItems"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Eco-Friendly Items
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div
+                    class="stat-number"
+                    id="averageScore"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Average Eco Score
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div
+                    class="stat-number"
+                    id="ecoFriendly"
+                >
+                    0%
+                </div>
+
+                <div class="stat-label">
+                    Eco Friendly
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="level-box">
+
+            <h3>
+                🌱 Your Eco Level
+            </h3>
+
+            <p id="ecoLevel">
+                Start scanning waste to begin!
+            </p>
+
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- HISTORY -->
+
+    <div class="card">
+
+        <div class="history-header">
+
+            <div>
+
+                <h2>
+                    🕘 Scan History
+                </h2>
+
+                <p class="subtitle">
+                    Your recently analyzed waste items.
+                </p>
+
+            </div>
+
+
+            <button
+                class="secondary"
+                onclick="clearHistory()"
+            >
+                Clear History
+            </button>
+
+        </div>
+
+
+        <div id="history">
+
+            <div class="empty-history">
+                No scans yet.
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        🌱 <strong>EcoLens</strong> —
+        Don't just throw it away.
+        Know where it belongs.
+    </p>
+
+    <p>
+        Built for Earth Forward 🌍
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+/* ELEMENTS */
+
+const imageInput =
+    document.getElementById("imageInput");
+
+const preview =
+    document.getElementById("preview");
+
+const analyzeBtn =
+    document.getElementById("analyzeBtn");
+
+const clearBtn =
+    document.getElementById("clearBtn");
+
+const loading =
+    document.getElementById("loading");
+
+const results =
+    document.getElementById("results");
+
+
+let selectedFile = null;
+
+
+
+/* IMAGE SELECTION */
+
+imageInput.addEventListener(
+    "change",
+    function () {
+
+        const file =
+            this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+
+        if (!file.type.startsWith("image/")) {
+
+            alert(
+                "Please select an image file."
+            );
+
+            return;
+        }
+
+
+        selectedFile =
+            file;
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function (event) {
+
+                preview.src =
+                    event.target.result;
+
+                preview.style.display =
+                    "block";
+
+                analyzeBtn.disabled =
+                    false;
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+
+/* CLEAR */
+
+clearBtn.addEventListener(
+    "click",
+    function () {
+
+        selectedFile =
+            null;
+
+        imageInput.value =
+            "";
+
+        preview.src =
+            "";
+
+        preview.style.display =
+            "none";
+
+        analyzeBtn.disabled =
+            true;
+
+        results.style.display =
+            "none";
+
+    }
+);
+
+
+
+/* ANALYZE */
+
+analyzeBtn.addEventListener(
+    "click",
+    async function () {
+
+        if (!selectedFile) {
+            return;
+        }
+
+
+        loading.style.display =
+            "block";
+
+        analyzeBtn.disabled =
+            true;
+
+
+        try {
+
+            const base64 =
+                await fileToBase64(
+                    selectedFile
+                );
+
+
+            const response =
+                await fetch(
+                    "http://localhost:3000/analyze",
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                image:
+                                    base64,
+
+                                mimeType:
+                                    selectedFile.type
+
+                            })
+
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    "Analysis failed"
+                );
+
+            }
+
+
+            displayResults(
+                data.result
+            );
+
+
+        }
+
+        catch (error) {
+
+            alert(
+                "❌ Error: " +
+                error.message
+            );
+
+            console.error(
+                error
+            );
+
+        }
+
+
+        loading.style.display =
+            "none";
+
+        analyzeBtn.disabled =
+            false;
+
+    }
+);
+
+
+
+/* BASE64 */
+
+function fileToBase64(file) {
+
+    return new Promise(
+        (
+            resolve,
+            reject
+        ) => {
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                () => {
+
+                    const result =
+                        reader.result;
+
+                    const base64 =
+                        result.split(",")[1];
+
+                    resolve(
+                        base64
+                    );
+
+                };
+
+
+            reader.onerror =
+                reject;
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+}
+
+
+
+/* DISPLAY RESULTS */
+
+function displayResults(text) {
+
+    results.style.display =
+        "block";
+
+
+    const wasteItem =
+        extractValue(
+            text,
+            "Waste item:"
+        );
+
+
+    const category =
+        extractValue(
+            text,
+            "Category:"
+        );
+
+
+    const confidence =
+        extractValue(
+            text,
+            "Confidence:"
+        );
+
+
+    const recyclable =
+        extractValue(
+            text,
+            "Recyclable:"
+        );
+
+
+    const disposal =
+        extractValue(
+            text,
+            "Disposal advice:"
+        );
+
+
+    const indiaGuideAI =
+        extractValue(
+            text,
+            "India disposal guide:"
+        );
+
+
+    const tip =
+        extractValue(
+            text,
+            "Environmental tip:"
+        );
+
+
+    document.getElementById(
+        "wasteItem"
+    ).textContent =
+        wasteItem ||
+        "Unknown";
+
+
+    document.getElementById(
+        "category"
+    ).textContent =
+        category ||
+        "Unknown";
+
+
+    document.getElementById(
+        "confidence"
+    ).innerHTML = `
+
+        <span class="confidence">
+
+            ${escapeHtml(
+                confidence ||
+                "Unknown"
+            )}
+
+        </span>
+
+    `;
+
+
+    document.getElementById(
+        "recyclable"
+    ).textContent =
+        recyclable ||
+        "Depends";
+
+
+    document.getElementById(
+        "disposal"
+    ).textContent =
+        disposal ||
+        "Follow local waste-management guidance.";
+
+
+    document.getElementById(
+        "environmentTip"
+    ).textContent =
+        tip ||
+        "Dispose of waste responsibly.";
+
+
+    /*
+        Use our India-specific
+        guidance.
+    */
+
+    const indiaAdvice =
+        getIndiaDisposal(
+            category,
+            wasteItem
+        );
+
+
+    document.getElementById(
+        "indiaGuide"
+    ).textContent =
+        indiaAdvice ||
+        indiaGuideAI ||
+        "Follow your local municipal waste rules.";
+
+
+    const score =
+        calculateEcoScore(
+            category,
+            recyclable
+        );
+
+
+    updateScoreVisual(
+        score
+    );
+
+
+    saveHistory(
+        wasteItem,
+        category,
+        score
+    );
+
+
+    updateDashboard();
+
+
+    results.scrollIntoView({
+        behavior:
+            "smooth"
+    });
+
+}
+
+
+
+/* EXTRACT VALUE */
+
+function extractValue(
+    text,
+    label
+) {
+
+    const lines =
+        text.split("\n");
+
+
+    const line =
+        lines.find(
+            function (item) {
+
+                return item
+                    .trim()
+                    .toLowerCase()
+                    .startsWith(
+                        label.toLowerCase()
+                    );
+
+            }
+        );
+
+
+    if (!line) {
+        return "";
+    }
+
+
+    return line
+        .substring(
+            line.indexOf(":") + 1
+        )
+        .trim();
+
+}
+
+
+
+/* INDIA DISPOSAL GUIDE */
+
+function getIndiaDisposal(
+    category,
+    item
+) {
+
+    const value =
+        (
+            (category || "") +
+            " " +
+            (item || "")
+        ).toLowerCase();
+
+
+
+    /* E-WASTE */
+
+    if (
+
+        value.includes("e-waste") ||
+        value.includes("electronic") ||
+        value.includes("phone") ||
+        value.includes("mobile") ||
+        value.includes("computer") ||
+        value.includes("laptop") ||
+        value.includes("charger") ||
+        value.includes("keyboard") ||
+        value.includes("mouse") ||
+        value.includes("earphone")
+
+    ) {
+
+        return "📱 E-waste: Do not put this item in your regular household bin. Give it to an authorized e-waste collection point or recycler.";
+
+    }
+
+
+
+    /* BATTERY / HAZARDOUS */
+
+    if (
+
+        value.includes("battery") ||
+        value.includes("hazard")
+
+    ) {
+
+        return "🔋 Hazardous waste: Keep batteries and hazardous items separate from normal household waste. Use an appropriate collection or recycling facility.";
+
+    }
+
+
+
+    /* ORGANIC */
+
+    if (
+
+        value.includes("organic") ||
+        value.includes("wet") ||
+        value.includes("food") ||
+        value.includes("fruit") ||
+        value.includes("vegetable") ||
+        value.includes("peel")
+
+    ) {
+
+        return "🍌 Wet waste: Put this in the wet/organic waste stream. Composting is a good option when available.";
+
+    }
+
+
+
+    /* PAPER */
+
+    if (
+
+        value.includes("paper") ||
+        value.includes("cardboard") ||
+        value.includes("carton") ||
+        value.includes("newspaper")
+
+    ) {
+
+        return "📄 Paper/Cardboard: Keep it clean and dry. Put it with your dry recyclable waste or give it to a local paper recycler.";
+
+    }
+
+
+
+    /* PLASTIC */
+
+    if (
+
+        value.includes("plastic") ||
+        value.includes("bottle") ||
+        value.includes("container")
+
+    ) {
+
+        return "♻️ Plastic: Empty and clean the item when possible, then place it with dry recyclable waste according to your local municipal collection rules.";
+
+    }
+
+
+
+    /* GLASS */
+
+    if (
+
+        value.includes("glass") ||
+        value.includes("jar")
+
+    ) {
+
+        return "🍾 Glass: Keep glass separate from wet waste. Handle broken glass carefully and use your local recycling or dry-waste collection system.";
+
+    }
+
+
+
+    /* METAL */
+
+    if (
+
+        value.includes("metal") ||
+        value.includes("aluminium") ||
+        value.includes("aluminum") ||
+        value.includes("steel") ||
+        value.includes("can")
+
+    ) {
+
+        return "🥫 Metal: Keep the item with dry recyclable waste and use local recycling or scrap collection services.";
+
+    }
+
+
+
+    /* TEXTILE */
+
+    if (
+
+        value.includes("textile") ||
+        value.includes("cloth") ||
+        value.includes("clothing") ||
+        value.includes("shirt") ||
+        value.includes("fabric")
+
+    ) {
+
+        return "👕 Textile: If reusable, donate or reuse it. Otherwise, look for a textile collection or recycling option in your area.";
+
+    }
+
+
+
+    /* GENERAL RECYCLABLE */
+
+    if (
+
+        value.includes("recyclable") ||
+        value.includes("recycle")
+
+    ) {
+
+        return "♻️ Recyclable waste: Keep it clean and dry and place it in your local dry-waste/recyclable collection stream.";
+
+    }
+
+
+
+    return "🗑️ General guidance: Separate the item according to your local municipal waste rules. When unsure, check with your local waste collection or recycling facility.";
+
+}
+
+
+
+/* ECO SCORE */
+
+function calculateEcoScore(
+    category,
+    recyclable
+) {
+
+    const value =
+        (
+            (category || "") +
+            " " +
+            (recyclable || "")
+        ).toLowerCase();
+
+
+
+    if (
+
+        value.includes("hazard") ||
+        value.includes("battery")
+
+    ) {
+
+        return 50;
+
+    }
+
+
+
+    if (
+
+        value.includes("e-waste") ||
+        value.includes("electronic")
+
+    ) {
+
+        return 55;
+
+    }
+
+
+
+    if (
+
+        value.includes("organic") ||
+        value.includes("wet") ||
+        value.includes("food")
+
+    ) {
+
+        return 90;
+
+    }
+
+
+
+    if (
+
+        value.includes("yes")
+
+    ) {
+
+        return 85;
+
+    }
+
+
+
+    if (
+
+        value.includes("no")
+
+    ) {
+
+        return 35;
+
+    }
+
+
+
+    return 60;
+
+}
+
+
+
+/* SCORE VISUAL */
+
+function updateScoreVisual(
+    score
+) {
+
+    const circle =
+        document.getElementById(
+            "scoreCircle"
+        );
+
+
+    const number =
+        document.getElementById(
+            "scoreNumber"
+        );
+
+
+    const title =
+        document.getElementById(
+            "scoreTitle"
+        );
+
+
+    const description =
+        document.getElementById(
+            "scoreDescription"
+        );
+
+
+    number.textContent =
+        score;
+
+
+    const degrees =
+        score * 3.6;
+
+
+    circle.style.background =
+        `conic-gradient(
+            #168447 ${degrees}deg,
+            #e4eee6 ${degrees}deg
+        )`;
+
+
+
+    if (score >= 80) {
+
+        title.textContent =
+            "🌟 Excellent Eco Choice";
+
+        description.textContent =
+            "Great! This item has a responsible disposal or recycling option.";
+
+    }
+
+    else if (score >= 60) {
+
+        title.textContent =
+            "🌱 Good Eco Choice";
+
+        description.textContent =
+            "You're making a positive environmental choice.";
+
+    }
+
+    else {
+
+        title.textContent =
+            "💚 Keep Improving";
+
+        description.textContent =
+            "This item may require special handling or a better disposal method.";
+
+    }
+
+}
+
+
+
+/* SAVE HISTORY */
+
+function saveHistory(
+    item,
+    category,
+    score
+) {
+
+    let history =
+        JSON.parse(
+            localStorage.getItem(
+                "ecolensHistory"
+            ) ||
+            "[]"
+        );
+
+
+    history.unshift({
+
+        item:
+            item ||
+            "Unknown",
+
+        category:
+            category ||
+            "Unknown",
+
+        score:
+            score,
+
+        date:
+            new Date()
+                .toLocaleString()
+
+    });
+
+
+    history =
+        history.slice(
+            0,
+            50
+        );
+
+
+    localStorage.setItem(
+        "ecolensHistory",
+        JSON.stringify(
+            history
+        )
+    );
+
+
+    displayHistory();
+
+}
+
+
+
+/* DISPLAY HISTORY */
+
+function displayHistory() {
+
+    const container =
+        document.getElementById(
+            "history"
+        );
+
+
+    const history =
+        JSON.parse(
+            localStorage.getItem(
+                "ecolensHistory"
+            ) ||
+            "[]"
+        );
+
+
+    if (
+        history.length === 0
+    ) {
+
+        container.innerHTML =
+            `
+            <div class="empty-history">
+                No scans yet.
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        "";
+
+
+    history.forEach(
+        function (entry) {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "history-item";
+
+
+            div.innerHTML = `
+
+                <div>
+
+                    <div class="history-name">
+
+                        ${escapeHtml(
+                            entry.item
+                        )}
+
+                    </div>
+
+                    <div class="history-date">
+
+                        ${escapeHtml(
+                            entry.category
+                        )}
+
+                        •
+                        
+                        ${escapeHtml(
+                            entry.date
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div class="score-small">
+
+                    ${entry.score}/100
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+
+
+/* DASHBOARD */
+
+function updateDashboard() {
+
+    const history =
+        JSON.parse(
+            localStorage.getItem(
+                "ecolensHistory"
+            ) ||
+            "[]"
+        );
+
+
+    const total =
+        history.length;
+
+
+    const recyclable =
+        history.filter(
+            function (item) {
+
+                return item.score >= 80;
+
+            }
+        ).length;
+
+
+    const average =
+        total === 0
+
+            ? 0
+
+            : Math.round(
+
+                history.reduce(
+                    function (
+                        sum,
+                        item
+                    ) {
+
+                        return (
+                            sum +
+                            item.score
+                        );
+
+                    },
+                    0
+                ) /
+                total
+
+            );
+
+
+    const percentage =
+        total === 0
+
+            ? 0
+
+            : Math.round(
+                (
+                    recyclable /
+                    total
+                ) * 100
+            );
+
+
+
+    document.getElementById(
+        "totalItems"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "recyclableItems"
+    ).textContent =
+        recyclable;
+
+
+    document.getElementById(
+        "averageScore"
+    ).textContent =
+        average;
+
+
+    document.getElementById(
+        "ecoFriendly"
+    ).textContent =
+        percentage +
+        "%";
+
+
+
+    let level =
+        "Start scanning waste to begin!";
+
+
+    if (
+        average >= 85
+    ) {
+
+        level =
+            "🏆 Eco Champion";
+
+    }
+
+    else if (
+        average >= 70
+    ) {
+
+        level =
+            "🌟 Eco Hero";
+
+    }
+
+    else if (
+        average >= 50
+    ) {
+
+        level =
+            "🌱 Eco Learner";
+
+    }
+
+    else if (
+        average > 0
+    ) {
+
+        level =
+            "💚 Keep Improving";
+
+    }
+
+
+    document.getElementById(
+        "ecoLevel"
+    ).textContent =
+        level;
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        average +
+        "%";
+
+}
+
+
+
+/* CLEAR HISTORY */
+
+function clearHistory() {
+
+    localStorage.removeItem(
+        "ecolensHistory"
+    );
+
+
+    displayHistory();
+
+    updateDashboard();
+
+}
+
+
+
+/* ESCAPE HTML */
+
+function escapeHtml(
+    text
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* START */
+
+displayHistory();
+
+updateDashboard();
+
+</script>
+
+
+</body>
+
+</html>
